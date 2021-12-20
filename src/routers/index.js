@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import baseRouter from './base_router';
 
 const AppRouter = () => {
-
+    
     const routers = [...baseRouter];
 
     const loopRouters = (list) => {
