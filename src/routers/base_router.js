@@ -10,10 +10,10 @@ const baseRouter = [
         component: <LayoutPage />,
         children: [
             { path: '/', component: <HomePage /> },
+            // 匹配任何非空路径
+            { path: '*', component: <NotFound /> }
         ]
     },
-    // 匹配任何非空路径
-    { path: '*', component: <NotFound /> }
 ];
 
 export default baseRouter;

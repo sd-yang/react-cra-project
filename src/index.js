@@ -5,9 +5,6 @@ import './index.css';
 import 'antd/dist/antd.min.css';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Router />
-  </React.StrictMode>,
+  <Router />,
   document.getElementById('root')
 );
-
