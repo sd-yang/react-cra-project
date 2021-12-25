@@ -1,3 +1,4 @@
+import React from "react";
 import LayoutPage from '../layout/index';
 import NotFound from '../pages/404';
 import LoginPage from '../pages/login';

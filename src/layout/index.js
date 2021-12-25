@@ -1,16 +1,20 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Layout, Button } from 'antd';
+import { Layout } from 'antd';
 import Sidebar from './sidebar';
 import Breadcrumb from './breadcrumb';
+import HeaderNode from "./header";
+import './index.less';
 
 const { Header, Content, Sider } = Layout;
 
 const LayoutPage = (props) => {
     // TODO 配置风格等数据
     return (
-        <Layout>
-            <Header style={{ height: 45 }}>Header</Header>
+        <Layout className={'layoutWrap'}>
+            <Header style={{ height: 45, lineHeight: '45px' }}>
+                <HeaderNode/>
+            </Header>
 
             <Layout>
                 <Sider theme={'light'} collapsible={true} breakpoint={'lg'} width={220}>

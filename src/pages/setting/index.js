@@ -1,9 +1,9 @@
 import React from 'react';
 
 const SettingPage = () => {
-    return(
+    return (
         <div>
-            
+
         </div>
     )
 };

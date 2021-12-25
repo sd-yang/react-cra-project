@@ -5,6 +5,6 @@ import './index.css';
 import 'antd/dist/antd.min.css';
 
 ReactDOM.render(
-  <Router />,
-  document.getElementById('root')
+    <Router/>,
+    document.getElementById('root')
 );

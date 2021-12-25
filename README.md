@@ -2,6 +2,8 @@
 
 **react后台管理类项目**
 - UI组件库使用 ant design
+- 使用 mock.js 进行数据模拟
+- 使用 axios 进行数据交互
 
 
 ### TO DO LIST
