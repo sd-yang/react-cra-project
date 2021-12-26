@@ -1,10 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import baseRouter from './base_router';
+import baseRouter from './baseRouter';
+import { useRequest } from "../utils/request";
 
 const AppRouter = () => {
     
     const routers = [...baseRouter];
+
+    // const { loading, data } = useRequest('/user/getUserInfo');
 
     // TODO 存储路由数据
 

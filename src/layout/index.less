@@ -1,10 +1,38 @@
 .layoutWrap {
+  header {
+    height: 45px;
+    line-height: 45px;
+  }
   .headerWrap {
+    height: 45px;
     overflow: hidden;
     clear: both;
 
+    .title {
+      color: white;
+      display: inline-block;
+    }
+
     .rightWrap {
       float: right;
+      color: white;
+
+      .user {
+        padding: 0 10px;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(255, 255, 255, .2);
+        }
+      }
+
+      .bell {
+        color: white;
+      }
+
+      .name {
+        padding-left: 10px;
+      }
     }
   }
 }

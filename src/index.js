@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './routers';
+
+import App from './routers';
 import './index.css';
 import 'antd/dist/antd.min.css';
 
+// 开发环境使用 mock 数据模拟
+process.env.NODE_ENV === 'development' && require('./mock');
+
 ReactDOM.render(
-    <Router/>,
+    <App/>,
     document.getElementById('root')
 );

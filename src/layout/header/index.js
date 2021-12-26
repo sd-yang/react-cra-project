@@ -1,19 +1,16 @@
 import React from 'react';
-import { Space, Avatar, Dropdown, Menu } from 'antd';
-
-const { subMenu } = Menu;
+import { Space } from 'antd';
+import Notices from "./notices";
+import UserInfo from "./userInfo";
 
 const HeaderNode = () => {
 
-    const menu = (
-        <Menu>
-
-        </Menu>
-    )
     return (
         <div className={'headerWrap'}>
+            <h2 className={'title'}>Management System</h2>
             <Space className={'rightWrap'}>
-                <Avatar>U</Avatar>
+                <Notices />
+                <UserInfo />
             </Space>
         </div>
     )

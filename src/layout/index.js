@@ -12,7 +12,7 @@ const LayoutPage = (props) => {
     // TODO 配置风格等数据
     return (
         <Layout className={'layoutWrap'}>
-            <Header style={{ height: 45, lineHeight: '45px' }}>
+            <Header>
                 <HeaderNode/>
             </Header>
 
