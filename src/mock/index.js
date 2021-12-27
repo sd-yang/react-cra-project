@@ -9,4 +9,5 @@ const useDataInfo = () => {
     }
 }
 
+Mock.setup({ timeout: 1000 });
 Mock.mock('/user/getUserInfo', 'get', useDataInfo);

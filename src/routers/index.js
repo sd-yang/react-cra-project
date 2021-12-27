@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import baseRouter from './baseRouter';
-import { useRequest } from "../utils/request";
 
 const AppRouter = () => {
-    
+    // 通过角色信息来组织路由
+    const { role } = useSelector(state => state.main.userInfo);
     const routers = [...baseRouter];
-
-    // const { loading, data } = useRequest('/user/getUserInfo');
 
     // TODO 存储路由数据
 
@@ -21,7 +20,7 @@ const AppRouter = () => {
                     </Route>
                 )
             }
-            return <Route key={item.path} path={item.path} element={item.component} />
+            return <Route key={item.path} path={item.path} element={item.component}/>
         });
     };
 

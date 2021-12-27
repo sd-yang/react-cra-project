@@ -4,7 +4,7 @@
 - UI组件库使用 ant design
 - 使用 mock.js 进行数据模拟
 - 使用 axios 进行数据交互
-- 使用 react-redux 进行状态管理
+- 使用 react-redux && @reduxjs/toolkit 进行状态管理
 
 
 ### TO DO LIST

@@ -3,7 +3,7 @@ import { transformRequestData } from "../index";
 import ajax from "./index";
 
 const useRequest = (requestData, options = {}) => {
-    const { manual = false } = options;
+    const { manual = false, onSuccess } = options;
     const { url, method = 'get', data } = transformRequestData(requestData);
     if (!url) return;
     const [loading, setLoading] = useState(false);
@@ -19,6 +19,7 @@ const useRequest = (requestData, options = {}) => {
         const response = await ajax({ method, url, data: runParams });
         setResData(response);
         setLoading(false);
+        if (onSuccess) onSuccess(response);
     }, [])
 
     return { loading, run: (runParams) => fetchData(runParams), data: resData }
