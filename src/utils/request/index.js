@@ -3,7 +3,7 @@ import useRequest from "./useRequest";
 
 const ajax = axios.create({
     timeout: 10000,
-    baseURL: ''
+    baseURL: '',
 });
 
 // 添加请求拦截器

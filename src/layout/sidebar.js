@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Menu } from 'antd';
+import { HomeOutlined } from '@ant-design/icons';
 
 const { SubMenu } = Menu;
 
 const initMenu = [
-    { key: 1, title: 'Option 1' },
+    { key: 'Home', title: 'Home', icon: <HomeOutlined/> },
     { key: 2, title: 'Option 2' },
     { key: 3, title: 'Option 3' },
     {
@@ -17,6 +18,7 @@ const initMenu = [
 ];
 
 const Sidebar = () => {
+    // TODO 根据路由数据生成对应的菜单
     const [menuList, setMenuList] = useState(initMenu);
 
     const menuNodeMap = (list) => {
