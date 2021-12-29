@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { Layout, Spin } from 'antd';
 import Sidebar from './sidebar';
-import Breadcrumb from './breadcrumb';
 import HeaderNode from "./header";
 import './index.less';
 
@@ -19,12 +18,12 @@ const LayoutPage = (props) => {
                     <HeaderNode/>
                 </Header>
 
-                <Layout>
+                {/* 需要添加 hasSider 属性，否则运行时才会检测是否有 Sider 组件，导致出现宽度计算问题 */}
+                <Layout hasSider={true}>
                     <Sider theme={'light'} collapsible={true} breakpoint={'lg'} width={220}>
                         <Sidebar/>
                     </Sider>
-                    <Content style={{ margin: '10px 16px 0' }}>
-                        <Breadcrumb/>
+                    <Content style={{ padding: '10px 16px 0', overflow: 'auto' }}>
                         <Outlet/>
                     </Content>
                 </Layout>
