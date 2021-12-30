@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import DrawingCharts from "../../../../components/drawingCharts";
+import { Statistic } from "antd";
+import CardTitle from "./cardTitle";
+import DrawingCharts from "../../../components/drawingCharts";
 
 const TaskCompleteMap = () => {
     const [dataSource] = useState([{ value: 0.7 }])
@@ -9,7 +11,7 @@ const TaskCompleteMap = () => {
                 type: 'gauge',
                 startAngle: 180,
                 radius: '130%',
-                center: ['50%', '80%'],
+                center: ['50%', '85%'],
                 endAngle: 0,
                 min: 0,
                 max: 1,
@@ -80,7 +82,14 @@ const TaskCompleteMap = () => {
     };
 
     return(
-        <DrawingCharts options={options} height={150}/>
+        <>
+            <Statistic title={<CardTitle title={'完成度'}/>} valueStyle={{ display: 'none' }}/>
+            <DrawingCharts options={options} height={150}/>
+            <div className={'cardFooter'}>
+                <span>日完成度</span>
+                <span>6 %</span>
+            </div>
+        </>
     )
 };
 

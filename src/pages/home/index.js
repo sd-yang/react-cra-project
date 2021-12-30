@@ -1,27 +1,34 @@
 import React from 'react';
 import { Row, Col, Card } from "antd";
 
-import TaskComplete from "./components/mapDetail/taskComplete";
+import TotalInfo from "./components/totalInfo";
+import TaskComplete from "./components/taskComplete";
 import ChinaMap from "./components/mapDetail/chinaMap";
+import './index.less';
+
+const cardProps = {
+    size: 'small',
+    bodyStyle: { padding: '20px 24px 8px', height: 244 }
+};
 
 const HomePage = () => {
     return (
-        <div>
-            <Row gutter={[30, 20]} wrap>
+        <div className={'homeWrap'}>
+            <Row gutter={[25, 20]} wrap>
                 <Col span={6}>
-                    <Card>
-
+                    <Card {...cardProps}>
+                        <TotalInfo />
                     </Card>
                 </Col>
 
                 <Col span={6}>
-                    <Card title={'完成度'}>
+                    <Card {...cardProps}>
                         <TaskComplete/>
                     </Card>
                 </Col>
 
                 <Col span={12}>
-                    <Card title={'1'}>
+                    <Card {...cardProps}>
 
                     </Card>
                 </Col>
