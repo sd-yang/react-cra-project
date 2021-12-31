@@ -24,5 +24,5 @@ ajax.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-export { useRequest };
 export default ajax;
+export { useRequest };
