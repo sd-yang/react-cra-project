@@ -3,6 +3,8 @@ import { Row, Col, Card } from "antd";
 
 import TotalInfo from "./components/totalInfo";
 import TaskComplete from "./components/taskComplete";
+import RatioInfo from "./components/ratioInfo";
+import RealTimeInfo from "./components/realTimeInfo";
 import ChinaMap from "./components/mapDetail/chinaMap";
 import './index.less';
 
@@ -27,9 +29,15 @@ const HomePage = () => {
                     </Card>
                 </Col>
 
-                <Col span={12}>
+                <Col span={6}>
                     <Card {...cardProps}>
+                        <RatioInfo />
+                    </Card>
+                </Col>
 
+                <Col span={6}>
+                    <Card {...cardProps}>
+                        <RealTimeInfo />
                     </Card>
                 </Col>
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Statistic } from "antd";
-import CardTitle from "./cardTitle";
+import CardTitle from "./common/cardTitle";
 import DrawingCharts from "../../../components/drawingCharts";
 
 const TaskCompleteMap = () => {

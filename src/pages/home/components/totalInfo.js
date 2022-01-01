@@ -1,6 +1,6 @@
 import React from "react";
 import { Statistic } from "antd";
-import CardTitle from "./cardTitle";
+import CardTitle from "./common/cardTitle";
 import { CaretUpOutlined, CaretDownOutlined } from '@ant-design/icons'
 
 const TotalInfo = () => {
