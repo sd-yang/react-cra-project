@@ -31,10 +31,10 @@ module.exports = function (proxy, allowedHost) {
     // use the `proxy` feature, it gets more dangerous because it can expose
     // remote code execution vulnerabilities in backends like Django and Rails.
     // So we will disable the host check normally, but enable it if you have
-    // specified the `proxy` setting. Finally, we let you override it if you
+    // specified the `proxy` accountSetting. Finally, we let you override it if you
     // really know what you're doing with a special environment variable.
     // Note: ["localhost", ".localhost"] will support subdomains - but we might
-    // want to allow setting the allowedHosts manually for more complex setups
+    // want to allow accountSetting the allowedHosts manually for more complex setups
     allowedHosts: disableFirewall ? 'all' : [allowedHost],
     headers: {
       'Access-Control-Allow-Origin': '*',

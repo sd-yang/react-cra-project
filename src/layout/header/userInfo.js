@@ -22,8 +22,8 @@ const UserInfo = () => {
                     <UserOutlined/> 个人中心
                 </Link>
             </Item>
-            <Item key={'setting'}>
-                <Link to={'/account/setting'}>
+            <Item key={'accountSetting'}>
+                <Link to={'/account/accountSetting'}>
                     <SettingOutlined/> 个人设置
                 </Link>
             </Item>

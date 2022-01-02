@@ -8,7 +8,7 @@ import './index.less';
 
 const { Header, Content, Sider } = Layout;
 
-const LayoutPage = (props) => {
+const LayoutPage = () => {
     const { loading } = useSelector(state => state.main);
     // TODO 配置风格等数据
     return (

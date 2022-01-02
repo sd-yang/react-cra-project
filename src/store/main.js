@@ -14,10 +14,13 @@ export const mainSlice = createSlice({
             state.userInfo = action.payload;
         },
         setLoading: (state, action) => {
-            state.loading = action.payload
+            state.loading = action.payload;
+        },
+        setRouters: (state, action) => {
+            state.routers = action.payload;
         }
     }
-})
+});
 
-export const { setUser, setLoading } = mainSlice.actions;
+export const { setUser, setLoading, setRouters } = mainSlice.actions;
 export default mainSlice.reducer;
