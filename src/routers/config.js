@@ -1,6 +1,7 @@
 import React from "react";
 import NotFound from '../pages/404';
 import Dashboard from '../pages/dashboard';
+import SearchList from "../pages/searchList";
 
 const config = [
     {
@@ -26,7 +27,7 @@ const config = [
             {
                 path: '/list/search',
                 title: '查询列表',
-                component: <Dashboard />
+                component: <SearchList />
             },
             {
                 path: '/list/base',
