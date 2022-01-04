@@ -8,9 +8,9 @@ const FormGroup = (props) => {
     return(
         <Row wrap={true}>
             {
-                props.children.map((item, idx) => {
+                React.Children.map(props.children, (value, idx) => {
                     return <Col span={span} key={idx}>
-                        {item}
+                        {value}
                     </Col>
                 })
             }

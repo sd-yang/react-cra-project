@@ -11,6 +11,5 @@ const ProForm = (props) => {
     )
 };
 
-export { FormGroup }
-
+ProForm.FormGroup = FormGroup;
 export default ProForm;

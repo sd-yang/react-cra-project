@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useMemo } from "react";
+import React, { memo, useMemo } from "react";
 import { Select, Form } from "antd";
 import { useRequest } from '../../utils/request';
 
@@ -10,10 +10,6 @@ const ApiSelect = (props) => {
     const manual = Boolean(dataSource);
 
     const { loading, data } = useRequest(requestData, { manual });
-
-    useEffect(() => {
-
-    }, []);
 
     const formatData = useMemo(() => {
         if (manual) return dataSource;
