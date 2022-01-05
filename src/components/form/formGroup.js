@@ -1,15 +1,16 @@
 import React from "react";
 import { Col, Row } from "antd";
+import { colSpan } from "./index";
 
-// TODO
 const FormGroup = (props) => {
-    const { span = 24 } = props;
-
     return(
-        <Row wrap={true}>
+        <Row gutter={[16, 16]}>
+            <Col key={'title'} span={props.title ? 24 : 0}>
+                {props.title}
+            </Col>
             {
                 React.Children.map(props.children, (value, idx) => {
-                    return <Col span={span} key={idx}>
+                    return <Col key={idx} {...colSpan}>
                         {value}
                     </Col>
                 })

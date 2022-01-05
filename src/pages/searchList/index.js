@@ -1,15 +1,13 @@
 import React from "react";
-import ProForm from "../../components";
+import { QueryForm, FormInput } from '../../components/form'
 
 const SearchList = () => {
 
     return(
         <div>
-            <ProForm>
-                <ProForm.FormGroup>
-
-                </ProForm.FormGroup>
-            </ProForm>
+            <QueryForm>
+                <FormInput label={'测试1'} name={'test1'}/>
+            </QueryForm>
         </div>
     )
 };

@@ -1,15 +1,9 @@
-import React from "react";
-import { Form } from "antd";
-import FormGroup from "./formGroup";
+import ProForm from "./proForm";
+import QueryForm from "./queryForm";
+import { FormInput } from "./formControl";
 
-const ProForm = (props) => {
+export const colSpan = { xs: 24, sm: 16, md: 12, lg: 8, xl: 6 };
 
-    return(
-        <Form>
-            {props.children}
-        </Form>
-    )
-};
-
-ProForm.FormGroup = FormGroup;
+export { QueryForm, FormInput };
 export default ProForm;
+
