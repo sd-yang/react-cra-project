@@ -9,9 +9,10 @@ const FormGroup = (props) => {
                 {props.title}
             </Col>
             {
-                React.Children.map(props.children, (value, idx) => {
+                React.Children.map(props.children, (child, idx) => {
+                    if (child.props.flex === 'auto') return child;
                     return <Col key={idx} {...colSpan}>
-                        {value}
+                        {child}
                     </Col>
                 })
             }
