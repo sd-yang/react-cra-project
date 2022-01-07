@@ -23,7 +23,7 @@ const LayoutPage = () => {
                     <Sider theme={'light'} collapsible={true} breakpoint={'lg'} width={220}>
                         <Sidebar/>
                     </Sider>
-                    <Content style={{ padding: '10px 16px 0', overflow: 'auto' }}>
+                    <Content style={{ padding: '10px 20px 0', overflow: 'auto' }}>
                         <Outlet/>
                     </Content>
                 </Layout>

@@ -1,23 +1,23 @@
-import React, { memo, useMemo } from "react";
-import { Select, Form } from "antd";
+import React, { memo, useCallback } from "react";
+import { Select } from "antd";
 import { useRequest } from '../../utils/request';
 
 const { Option } = Select;
 
-// TODO
+// TODO 模糊搜索
 const ApiSelect = (props) => {
     const { formProps, disabled, dataSource, requestData, formatResult, refreshFlag, ...otherProps } = props;
     const manual = Boolean(dataSource);
 
     const { loading, data } = useRequest(requestData, { manual });
 
-    const formatData = useMemo(() => {
+    const formatData = useCallback(() => {
         if (manual) return dataSource;
         if (formatResult) return formatResult(data);
         return data?.data?.data || [];
     }, [data]);
 
-    const selectNode = (
+    return (
         <Select
             allowClear={true}
             style={{ width: '100%' }}
@@ -33,13 +33,6 @@ const ApiSelect = (props) => {
                 })
             }
         </Select>
-    );
-
-    if (!formProps) return {selectNode};
-    return (
-        <Form.Item {...formProps}>
-            {selectNode}
-        </Form.Item>
     )
 };
 

@@ -1,4 +1,4 @@
-import ApiSelect from "./select/apiSelect";
+import ApiSelect from "./form/apiSelect";
 import ProForm from "./form";
 
 export { ApiSelect };

@@ -24,5 +24,13 @@ ajax.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
+const GET = (url, data, options) => {
+    return ajax({ url, data, method: 'get', ...options });
+}
+
+const POST = (url, data, options) => {
+    return ajax({ url, data, method: 'post', ...options });
+}
+
 export default ajax;
-export { useRequest };
+export { useRequest, GET, POST };

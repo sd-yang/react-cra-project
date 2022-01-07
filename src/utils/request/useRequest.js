@@ -5,7 +5,7 @@ import ajax from "./index";
 const useRequest = (requestData, options = {}) => {
     const { manual = false, onSuccess, formatResult, onError } = options;
     const { url, method = 'get', data, func } = transformRequestData(requestData);
-    if (!url && !func) return;
+    if (!url && !func) return {};
     const [loading, setLoading] = useState(false);
     const [resData, setResData] = useState(undefined);
     const [error, setError] = useState(null);

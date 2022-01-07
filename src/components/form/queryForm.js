@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { Col, Button, Space, Form } from "antd";
+import React, { useCallback, memo } from "react";
+import { Col, Button, Space, Form, Card } from "antd";
 import { useBoolean } from '../hooks';
 import ProForm from "./proForm";
 import Iconfont from "../iconfont";
@@ -17,7 +17,7 @@ const QueryForm = (props) => {
     }, []);
 
     return (
-        <div>
+        <Card bodyStyle={{ paddingBottom: 16 }} style={{ marginBottom: 16 }}>
             <ProForm form={form} labelCol={{ flex: '100px' }} onFinish={handleSearch}>
                 <ProForm.FormGroup>
                     {
@@ -40,8 +40,8 @@ const QueryForm = (props) => {
                     </Col>
                 </ProForm.FormGroup>
             </ProForm>
-        </div>
+        </Card>
     )
 };
 
-export default QueryForm;
+export default memo(QueryForm);
