@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "antd";
-import { colSpan } from "./index";
+
+export const colSpan = { xs: 24, sm: 16, md: 12, lg: 8, xl: 6 };
 
 const FormGroup = (props) => {
     return(

@@ -20,6 +20,19 @@ const getStatus = () => {
     }
 }
 
+const getList = () => {
+    return {
+        ...responseObj,
+        data: Mock.mock({
+            total: 32,
+            "data|32": [
+                { id: Math.random().toString().substr(2) }
+            ]
+        })
+    }
+}
+
 Mock.setup({ timeout: 1500 });
 Mock.mock('/user/getUserInfo', 'get', useDataInfo);
 Mock.mock('/list/getListStatus', 'get', getStatus);
+Mock.mock('/list/getList', 'post', getList);

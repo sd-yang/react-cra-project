@@ -1,6 +1,6 @@
 import React, { useCallback, memo } from "react";
 import { Col, Button, Space, Form, Card } from "antd";
-import { useBoolean } from '../hooks';
+import useBoolean from '../hooks/useBoolean';
 import ProForm from "./proForm";
 import Iconfont from "../iconfont";
 
