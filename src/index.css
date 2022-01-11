@@ -23,3 +23,7 @@ body {
 .ant-spin-nested-loading, .ant-spin-container {
   height: 100%;
 }
+
+.danger {
+  color: red;
+}

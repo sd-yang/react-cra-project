@@ -20,7 +20,7 @@ const useRequest = (requestData, options = {}) => {
         setError(null);
         let request = func ? func() : ajax({ method, url, data: runParams });
         return request.then((response) => {
-                const result = formatResult ? formatResult(response) : response;
+                const result = formatResult ? formatResult(response.data) : response.data;
                 setResData(result);
                 if (onSuccess) onSuccess(result);
             }).catch((error) => {

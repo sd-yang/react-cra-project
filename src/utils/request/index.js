@@ -24,11 +24,11 @@ ajax.interceptors.response.use(function (response) {
     return Promise.reject(error);
 });
 
-const GET = (url, data, options) => {
-    return ajax({ url, data, method: 'get', ...options });
+const GET = (url, { data, params } = {}, options) => {
+    return ajax({ url, data, params, method: 'get', ...options });
 }
 
-const POST = (url, data, options) => {
+const POST = (url, data = {}, options) => {
     return ajax({ url, data, method: 'post', ...options });
 }
 

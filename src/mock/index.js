@@ -26,7 +26,14 @@ const getList = () => {
         data: Mock.mock({
             total: 32,
             "data|32": [
-                { id: Math.random().toString().substr(2) }
+                {
+                    "id|+1": 1,
+                    "operator": "@cname",
+                    "title": "@title",
+                    "status|1": ['normal', 'timeout', 'close'],
+                    "desc": "@cword(32)",
+                    "time": "@datetime"
+                }
             ]
         })
     }

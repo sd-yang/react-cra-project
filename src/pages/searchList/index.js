@@ -1,17 +1,26 @@
 import React from "react";
 import { Card, Radio, Space, Button } from "antd";
-import { QueryForm, FormInput, FormSelect, FormDatePicker, ProTable } from '../../components';
-import { getStatus } from "../../server/list";
+import { QueryForm, FormInput, FormSelect, FormDatePicker, useToggle } from '../../components';
+import { getStatus, getList } from "../../server/list";
+import { useRequest } from '../../utils/request';
+
+import TableList from "./components/tableList";
 
 const SearchList = () => {
+    const { state: type, toggle } = useToggle('list', 'card');
+    const queryReq = useRequest(getList);
 
     const toSearch = (values) => {
         console.log(values);
     };
 
+    const handleType = () => {
+        toggle();
+    };
+
     const switchType = (
         <Space>
-            <Radio.Group defaultValue={'list'} buttonStyle="solid">
+            <Radio.Group value={type} buttonStyle="solid" onChange={handleType}>
                 <Radio.Button value={'list'}>列表式</Radio.Button>
                 <Radio.Button value={'card'}>卡片式</Radio.Button>
             </Radio.Group>
@@ -30,27 +39,8 @@ const SearchList = () => {
             </QueryForm>
 
             <Card extra={switchType}>
-                <ProTable
-                    rowKey={'id'}
-                    dataSource={[]}
-                    columns={[
-                        { title: 'ID', dataIndex: 'id' },
-                        { title: '名称', dataIndex: 'title' },
-                        { title: '状态', dataIndex: 'status' },
-                        { title: '描述', dataIndex: 'desc' },
-                        { title: '上次调度时间', dataIndex: 'time' },
-                        {
-                            title: '操作',
-                            dataIndex: 'operation',
-                            width: 120,
-                            render: () => {
-                                return <Space>
-                                    <a>删除</a>
-                                    <a>编辑</a>
-                                </Space>
-                            }
-                        }
-                    ]}
+                <TableList
+                    request={queryReq}
                 />
             </Card>
         </div>
