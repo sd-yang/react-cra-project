@@ -1,6 +1,7 @@
 import React from "react";
 import { Space } from "antd";
 import { ProTable } from "../../../components";
+import { timeRender } from '../../../components/table/cellRender';
 
 const TableList = (props) => {
     const { request } = props;
@@ -20,7 +21,7 @@ const TableList = (props) => {
                     { title: '状态', dataIndex: 'status' },
                     { title: '描述', dataIndex: 'desc' },
                     { title: '操作人', dataIndex: 'operator' },
-                    { title: '上次调度时间', dataIndex: 'time' },
+                    { title: '上次调度时间', dataIndex: 'time', render: timeRender },
                     {
                         title: '操作',
                         dataIndex: 'operation',

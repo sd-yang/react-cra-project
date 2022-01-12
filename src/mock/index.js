@@ -32,7 +32,8 @@ const getList = () => {
                     "title": "@title",
                     "status|1": ['normal', 'timeout', 'close'],
                     "desc": "@cword(32)",
-                    "time": "@datetime"
+                    // "time": "@datetime"
+                    "time": new Date()
                 }
             ]
         })

@@ -1,5 +1,5 @@
-import React, { memo, useCallback } from "react";
-import { Select } from "antd";
+import React, { memo, useCallback } from 'react';
+import { Select } from 'antd';
 import { useRequest } from '../../utils/request';
 
 const { Option } = Select;
@@ -14,7 +14,7 @@ const ApiSelect = (props) => {
     const formatData = useCallback(() => {
         if (manual) return dataSource;
         if (formatResult) return formatResult(data);
-        return data?.data?.data || [];
+        return data?.data || [];
     }, [data]);
 
     return (
@@ -29,11 +29,11 @@ const ApiSelect = (props) => {
                 formatData().map((item, idx) => {
                     return <Option key={idx} value={item.value} disabled={item.disabled || false}>
                         {item.label}
-                    </Option>
+                    </Option>;
                 })
             }
         </Select>
-    )
+    );
 };
 
 export default memo(ApiSelect);

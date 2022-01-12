@@ -3,7 +3,7 @@ import Qs from 'qs';
 // 转化request请求对象
 export const transformRequestData = (data) => {
     if (!data) return {};
-    if (typeof data === 'function') return { func: data };
+    if (typeof data === 'function') return { req: data };
     if (typeof data === 'string') return { url: data };
     if (Object.prototype.toString.apply(data) !== 'object Object') return {};
     const results = { ...data };
