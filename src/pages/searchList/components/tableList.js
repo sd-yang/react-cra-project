@@ -1,5 +1,5 @@
 import React from "react";
-import { Space } from "antd";
+import { Space, Popconfirm, message } from "antd";
 import { ProTable } from "../../../components";
 import { timeRender } from '../../../components/table/cellRender';
 
@@ -8,6 +8,10 @@ const TableList = (props) => {
     const { loading, data } = request;
 
     console.log(data)
+
+    const handleDelete = () => {
+        message.success('删除成功！');
+    };
 
     return(
         <>
@@ -28,7 +32,9 @@ const TableList = (props) => {
                         width: 120,
                         render: () => {
                             return <Space>
-                                <a className={'danger'}>删除</a>
+                                <Popconfirm title={'请确认是否删除该条数据？'} onConfirm={handleDelete}>
+                                    <a className={'danger'}>删除</a>
+                                </Popconfirm>
                                 <a>编辑</a>
                             </Space>
                         }

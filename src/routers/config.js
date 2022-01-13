@@ -21,7 +21,7 @@ const config = [
         ]
     },
     {
-        title: '列表页',
+        title: '列表详情',
         icon: 'icon-liebiao',
         children: [
             {
@@ -31,13 +31,13 @@ const config = [
             },
             {
                 path: '/list/base',
-                title: '标准列表',
+                title: '详情页',
                 component: <Dashboard />
             },
         ]
     },
     {
-        title: '个人页',
+        title: '配置中心',
         icon: 'icon-geren',
         children: [
             {

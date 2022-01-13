@@ -11,6 +11,7 @@ const useRequest = (requestData, options = {}) => {
     const [loading, setLoading] = useState(false);
     const [resData, setResData] = useState(undefined);
     const [error, setError] = useState(null);
+    const [searchData, setSearch] = useState();
 
     useEffect(() => {
         if (manual) return;
@@ -22,11 +23,12 @@ const useRequest = (requestData, options = {}) => {
     }, []);
 
     const fetchData = useCallback((runParams) => {
-        setLoading(true);
-        setError(null);
         reqOrder.current += 1;
         const thisOrder = reqOrder.current;
         let request = req ? req(runParams) : ajax({ method, url, data: runParams });
+        setLoading(true);
+        setError(null);
+        setSearch(runParams);
         return request
             .then((response) => {
                 if (thisOrder !== reqOrder.current) return;
@@ -45,7 +47,12 @@ const useRequest = (requestData, options = {}) => {
             });
     }, []);
 
-    return { loading, run: fetchData, data: resData, error };
+    // 使用上次的参数进行刷新
+    const refresh = useCallback((params = {}) => {
+        fetchData({...searchData, ...params });
+    }, [searchData]);
+
+    return { loading, run: fetchData, data: resData, error, refresh };
 };
 
 export default useRequest;
