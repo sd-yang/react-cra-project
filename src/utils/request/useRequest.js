@@ -6,6 +6,7 @@ const useRequest = (requestData, options = {}) => {
     const { manual = false, onSuccess, formatResult, onError } = options;
     const { url, method = 'get', data, req } = transformRequestData(requestData);
     if (!url && !req) return {};
+    // TODO 轮询
 
     const reqOrder = useRef(0);
     const [loading, setLoading] = useState(false);

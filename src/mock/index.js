@@ -1,46 +1,24 @@
-import Mock from 'mockjs';
-
-const responseObj = { code: 0, status: 'success' };
-
-const useDataInfo = () => {
-    return {
-        ...responseObj,
-        data: { name: 'Rick', type: 'admin' }
-    }
-}
-
-const getStatus = () => {
-    return {
-        ...responseObj,
-        data: [
-            { label: '正常', value: 'normal' },
-            { label: '超时', value: 'timeout' },
-            { label: '关闭', value: 'close' },
-        ]
-    }
-}
-
-const getList = () => {
-    return {
-        ...responseObj,
-        data: Mock.mock({
-            total: 32,
-            "data|32": [
-                {
-                    "id|+1": 1,
-                    "operator": "@cname",
-                    "title": "@title",
-                    "status|1": ['normal', 'timeout', 'close'],
-                    "desc": "@cword(32)",
-                    // "time": "@datetime"
-                    "time": new Date()
-                }
-            ]
-        })
-    }
-}
+const Mock = require('mockjs');
+const requireServices = require.context('./', true, /[a-zA-Z]\w+\.js/);
+const mockServers = {};
+requireServices.keys().filter(item => item !== './index.js').forEach(fileName => {
+    const serverName = fileName.split('/').pop().split('.')[0];
+    mockServers[serverName] = requireServices(fileName).default || requireServices(fileName);
+});
 
 Mock.setup({ timeout: 1500 });
-Mock.mock('/user/getUserInfo', 'get', useDataInfo);
-Mock.mock('/list/getListStatus', 'get', getStatus);
-Mock.mock('/list/getList', 'post', getList);
+const responseObj = { code: 0, status: 'success' };
+
+Object.keys(mockServers).forEach(serverName => {
+    let mockServer = mockServers[serverName];
+    Object.keys(mockServer).forEach(api => {
+        let url = '/' + serverName + '/' + api;
+        let result = mockServer[api](Mock);
+        Mock.mock(url, result.type || 'get', function () {
+            return {
+                ...responseObj,
+                data: result.data
+            };
+        });
+    });
+});

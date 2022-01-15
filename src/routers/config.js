@@ -2,6 +2,7 @@ import React from "react";
 import NotFound from '../pages/404';
 import Dashboard from '../pages/dashboard';
 import SearchList from "../pages/searchList";
+import DetailInfo from '../pages/detailInfo';
 
 const config = [
     {
@@ -32,7 +33,7 @@ const config = [
             {
                 path: '/list/base',
                 title: '详情页',
-                component: <Dashboard />
+                component: <DetailInfo />
             },
         ]
     },

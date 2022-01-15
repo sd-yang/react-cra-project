@@ -24,6 +24,10 @@ body {
   height: 100%;
 }
 
+.pageColor {
+  background: #ffffff;
+}
+
 .danger {
   color: red;
 }
