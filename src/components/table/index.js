@@ -3,7 +3,7 @@ import { Table } from "antd";
 import { useRequest } from '../../utils/request';
 
 const ProTable = (props) => {
-    const { dataSource, bordered = true, size = 'middle', ...tableProps } = props;
+    const { dataSource, bordered = true, size = 'middle', columns, ...tableProps } = props;
     const manual = Boolean(dataSource);
     const { loading, data = [] } = useRequest('', { manual });
 
@@ -12,7 +12,7 @@ const ProTable = (props) => {
             <Table
                 size={size}
                 bordered={bordered}
-                columns={[]}
+                columns={columns || []}
                 dataSource={dataSource || data}
                 loading={loading}
                 {...tableProps}
