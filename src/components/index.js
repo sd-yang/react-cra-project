@@ -4,4 +4,4 @@ export { default as ApiSelect } from './form/apiSelect';
 export { default as ProForm } from './form/proForm';
 export { default as QueryForm } from './form/queryForm';
 export { default as ProTable } from "./table";
-export { FormInput, FormSelect, FormDatePicker } from './form/formControl';
+export { FormInput, FormSelect, FormDatePicker, FormCheckbox, FormPassword } from './form/formControl';
