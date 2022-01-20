@@ -12,9 +12,9 @@ const responseObj = { code: 0, status: 'success' };
 Object.keys(mockServers).forEach(serverName => {
     let mockServer = mockServers[serverName];
     Object.keys(mockServer).forEach(api => {
-        let url = '/' + serverName + '/' + api;
+        let url = '/' + serverName + '/' + api + '.*';
         let result = mockServer[api](Mock);
-        Mock.mock(url, result.type || 'get', function () {
+        Mock.mock(RegExp(url), result.type || 'get', function () {
             return {
                 ...responseObj,
                 data: result.data

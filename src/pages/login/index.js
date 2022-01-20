@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Row, Form, Tabs, Checkbox } from 'antd';
+import { Button, Row, Form, Tabs } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { ProForm } from '../../components';
+import { ProForm, FormCheckbox } from '../../components';
 import NormalLogin from './components/normalLogin';
 import PhoneLogin from './components/phoneLogin';
 import './index.less';
@@ -15,8 +15,8 @@ const LoginPage = () => {
     const { size } = useSelector(state => state.login);
 
     const handleToLogin = () => {
-        routerTo('/')
-    }
+        routerTo('/');
+    };
 
     return (
         <div className={'loginWrap'}>
@@ -27,28 +27,29 @@ const LoginPage = () => {
                     <div className={'desc'}>好用便捷的React管理系统</div>
                 </div>
 
-                <ProForm form={form}>
+                <ProForm form={form} onFinish={handleToLogin} initialValues={{ userName: 'admin', usePassword: 'admin' }}>
                     <Tabs centered={true} destroyInactiveTabPane={true}>
                         <TabPane key={'normal'} tab={'账户密码登陆'}>
-                            <NormalLogin />
+                            <NormalLogin/>
                         </TabPane>
                         <TabPane key={'phone'} tab={'手机号登陆'}>
-                            <PhoneLogin />
+                            <PhoneLogin form={form}/>
                         </TabPane>
                     </Tabs>
+
+                    <Row justify={'space-between'}>
+                        <FormCheckbox name={'remember'} option={{ options: [{ label: '自动登陆', value: true }] }}/>
+                        <a>忘记密码？</a>
+                    </Row>
+
+                    <Button type={'primary'} block size={size} htmlType={'submit'}>
+                        登录
+                    </Button>
                 </ProForm>
 
-                <Row justify={'space-between'} style={{ marginBottom: 24 }}>
-                    <Checkbox.Group options={[{ label: '自动登陆', value: 'auto' }]}/>
-                    <a>忘记密码？</a>
-                </Row>
-
-                <Button onClick={handleToLogin} type={'primary'} block size={size}>
-                    登录
-                </Button>
             </div>
         </div>
-    )
+    );
 };
 
 export default LoginPage;

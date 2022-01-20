@@ -7,7 +7,7 @@ const ProForm = (props) => {
     const [form] = Form.useForm();
 
     return (
-        <Form {...formProps} form={props.form || form}>
+        <Form form={props.form || form} {...formProps}>
             {props.children}
         </Form>
     )
