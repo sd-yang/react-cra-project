@@ -15,7 +15,7 @@ export default {
                 total: 32,
                 'data|32': [
                     {
-                        'id|+1': 1,
+                        'id|+1': '@id',
                         'operator': '@cname',
                         'title': '@title',
                         'status|1': ['normal', 'timeout', 'close'],

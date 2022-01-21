@@ -1,5 +1,6 @@
 import React from 'react';
 import dayjs from 'dayjs';
+import { NavLink } from 'react-router-dom';
 
 const emptyStr = '--';
 
@@ -18,4 +19,9 @@ export const timeRender = (value) => {
 
 export const dateRender = (value) => {
     return timeFormat(value, 'YYYY-MM-DD');
+}
+
+export const idToDetail = (value, url) => {
+    if (!value) return emptyStr;
+    return <NavLink to={`${url}/${value}`}>{value}</NavLink>
 }

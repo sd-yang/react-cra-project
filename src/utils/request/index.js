@@ -32,5 +32,5 @@ const POST = (url, data = {}, options) => {
     return ajax({ url, data, method: 'post', ...options });
 }
 
-export default ajax;
 export { useRequest, GET, POST };
+export default ajax;

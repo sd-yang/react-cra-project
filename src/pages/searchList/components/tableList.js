@@ -1,7 +1,7 @@
 import React from "react";
 import { Space, Popconfirm, message } from "antd";
 import { ProTable } from "../../../components";
-import { timeRender } from '../../../components/table/cellRender';
+import { timeRender, idToDetail } from '../../../components/table/cellRender';
 
 const TableList = (props) => {
     const { request } = props;
@@ -20,7 +20,7 @@ const TableList = (props) => {
                 loading={loading}
                 dataSource={data?.data?.data || []}
                 columns={[
-                    { title: 'ID', dataIndex: 'id' },
+                    { title: 'ID', dataIndex: 'id', render: (v) => idToDetail(v, '/list/detail') },
                     { title: '名称', dataIndex: 'title' },
                     { title: '状态', dataIndex: 'status' },
                     { title: '描述', dataIndex: 'desc' },

@@ -1,4 +1,5 @@
 import Qs from 'qs';
+import { useParams } from 'react-router-dom';
 
 // 转化request请求对象
 export const transformRequestData = (data) => {
@@ -33,4 +34,10 @@ export const filterMenuList = (list, role) => {
         if (info.children) info.children = filterMenuList(item.children);
         return info;
     })
+};
+
+// 获取查询参数
+export const querySearchId = () => {
+    const { id } = useParams();
+    return id;
 };

@@ -8,5 +8,12 @@ export default {
                 { title: '完成' },
             ])
         }
+    },
+    getOrderDetail(Mock) {
+        return {
+            data: Mock.mock({
+                id: '@id'
+            })
+        }
     }
 }

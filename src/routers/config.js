@@ -31,7 +31,7 @@ const config = [
                 component: <SearchList />
             },
             {
-                path: '/list/base',
+                path: '/list/detail/:id',
                 title: '详情页',
                 component: <DetailInfo />
             },
