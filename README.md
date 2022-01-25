@@ -1,9 +1,17 @@
 # React 后台管理类项目
 
+**后台管理类系统的便捷开发模版** 
+
+- react hooks 函数式组件开发
 - UI组件库使用 ant design
 - 使用 mock.js 进行数据模拟
+- 使用 day.js 进行时间处理
 - 使用 axios 进行数据交互
 - 使用 react-redux && @reduxjs/toolkit 进行状态管理
+- echarts 进行图表展示
+
+
+### 目录结构 TODO
 
 
 ### TO DO LIST

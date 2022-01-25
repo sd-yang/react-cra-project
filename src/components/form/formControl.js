@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Form, Input, DatePicker, Checkbox } from 'antd';
 import ApiSelect from './apiSelect';
+
+const { TextArea } = Input;
 
 const FormControl = (props) => {
     const { name, label, rules, ...otherProps } = props;
@@ -11,12 +13,19 @@ const FormControl = (props) => {
     );
 };
 
-export const FormInput = (props) => {
+export const FormInput = memo((props) => {
     const { option = {} } = props;
     return <FormControl {...props}>
         <Input {...option}/>
     </FormControl>;
-};
+});
+
+export const FormInputArea = memo((props) => {
+    const { option = {} } = props;
+    return <FormControl {...props}>
+        <TextArea autoSize={{ minRows: 5 }} {...option}/>
+    </FormControl>;
+});
 
 export const FormPassword = (props) => {
     const { option = {} } = props;
@@ -25,12 +34,12 @@ export const FormPassword = (props) => {
     </FormControl>;
 };
 
-export const FormSelect = (props) => {
+export const FormSelect = memo((props) => {
     const { option = {} } = props;
     return <FormControl {...props}>
         <ApiSelect {...option}/>
     </FormControl>;
-};
+});
 
 export const FormDatePicker = (props) => {
     return <FormControl {...props}>

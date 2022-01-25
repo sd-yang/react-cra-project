@@ -3,8 +3,28 @@
     .ant-list {
       .ant-row {
         > div {
-          flex: 1 1 auto;
+          //flex: 1 1 auto;
         }
+      }
+    }
+  }
+
+  .space-between {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .card-id-title {
+    font-size: 16px;
+    .space-between();
+
+    + div {
+      color: #797979;
+      font-size: 14px;
+      margin-top: 5px;
+      .space-between();
+      .ant-tag {
+        margin: 0;
       }
     }
   }

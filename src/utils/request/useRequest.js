@@ -3,7 +3,7 @@ import { transformRequestData } from '../index';
 import ajax from './index';
 
 const useRequest = (requestData, options = {}) => {
-    const { manual = false, onSuccess, formatResult, onError } = options;
+    const { manual = false, onSuccess, formatResult, onError, initParams } = options;
     const { url, method = 'get', data, req } = transformRequestData(requestData);
     if (!url && !req) return {};
     // TODO 轮询
@@ -16,14 +16,14 @@ const useRequest = (requestData, options = {}) => {
 
     useEffect(() => {
         if (manual) return;
-        fetchData(data);
+        fetchData(data || initParams);
         return () => {
             // 组件销毁后阻止渲染
             reqOrder.current += 1;
         };
     }, []);
 
-    const fetchData = useCallback((runParams) => {
+    const fetchData = useCallback((runParams = {}) => {
         reqOrder.current += 1;
         const thisOrder = reqOrder.current;
         let request = req ? req(runParams) : ajax({ method, url, data: runParams });

@@ -1,11 +1,13 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import mainReducer from './main';
 import loginReducer from './login';
+import searchReducer from './search';
 
 
 export default configureStore({
     reducer: {
         main: mainReducer,
-        login: loginReducer
+        login: loginReducer,
+        search: searchReducer,
     }
-})
+});
