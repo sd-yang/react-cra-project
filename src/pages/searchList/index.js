@@ -1,8 +1,8 @@
-import React, { memo, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { setEditorRow, setStatus } from '../../store/search';
+import React, { memo, useCallback, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setEditorRow, setStatus, setType } from '../../store/search';
 import { Card, Radio, Space, Button, message } from 'antd';
-import { QueryForm, FormInput, FormSelect, FormDatePicker, useToggle, usePage, useBoolean } from '../../components';
+import { QueryForm, FormInput, FormSelect, FormDatePicker, usePage, useBoolean } from '../../components';
 import { getStatus, getList } from '../../server/list';
 
 import TableList from './components/tableList';
@@ -11,15 +11,18 @@ import EditorDrawer from './components/editorDrawer';
 import './index.less';
 
 const SearchList = () => {
-    const { state: type, toggle } = useToggle('list', 'card');
     const toggleEditor = useBoolean(false);
+    const { type } = useSelector(state => state.search);
+    const [pageSize, setPageSize] = useState(10);
     const dispatch = useDispatch();
-    const queryReq = usePage(getList);
+    const queryReq = usePage(getList, { pageSize });
 
     // 切换展示形态
-    const handleType = () => {
-        toggle();
-        toSearch({});
+    const handleType = (e) => {
+        const take = e.target.value === 'list' ? 10 : 8;
+        setPageSize(take);
+        dispatch(setType(e.target.value));
+        queryReq.refreshPage(take);
     };
 
     // 操作 新增｜编辑｜删除
@@ -35,8 +38,9 @@ const SearchList = () => {
     }
 
     const toSearch = useCallback((values) => {
+        console.log(pageSize, '---');
         queryReq.resetRun(values);
-    }, []);
+    }, [queryReq]);
 
     const statusCallBack = useCallback((data) => {
         const list = data?.data || [];
@@ -49,7 +53,7 @@ const SearchList = () => {
 
     const handleRefresh = useCallback(() => {
         queryReq.refresh();
-    }, []);
+    }, [queryReq]);
 
     const switchType = (
         <Space>

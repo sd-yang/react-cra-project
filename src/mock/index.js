@@ -14,7 +14,8 @@ Object.keys(mockServers).forEach(serverName => {
     Object.keys(mockServer).forEach(api => {
         let url = '/' + serverName + '/' + api + '.*';
         let result = mockServer[api](Mock);
-        Mock.mock(RegExp(url), result.type || 'get', function () {
+        Mock.mock(RegExp(url), result.type || 'get', function (options) {
+            console.log(options);
             return {
                 ...responseObj,
                 data: result.data

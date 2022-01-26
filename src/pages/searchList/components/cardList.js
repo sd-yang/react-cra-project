@@ -5,7 +5,7 @@ import { EditOutlined, DeleteOutlined, UserOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
 const cardStyle = {
-    style: { width: 320, margin: 'auto' },
+    style: { minWidth: 300, margin: 'auto' },
     bodyStyle: { height: 250 },
     hoverable: true,
     size: 'small'
@@ -41,12 +41,13 @@ const CardList = (props) => {
     return (
         <List
             loading={loading}
-            grid={{ gutter: 16, xs: 24, xl: 5 }}
+            grid={{ gutter: 16, xs: 1, lg: 2, xl: 2, xxl: 4 }}
             dataSource={dataSource}
             renderItem={item => (
                 <List.Item>
                     <Card title={title(item)} actions={actions(item)} {...cardStyle}>
-                        <Card.Meta title={item.title} description={item.desc}/>
+                        <div className={'card-content-title'}>{item.title}</div>
+                        <div className={'card-content'}>{item.desc}</div>
                     </Card>
                 </List.Item>
             )}

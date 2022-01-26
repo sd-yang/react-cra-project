@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     editorRow: {},
     status: {},
+    type: 'list',
 };
 
 export const searchSlice = createSlice({
@@ -14,9 +15,12 @@ export const searchSlice = createSlice({
         },
         setStatus: (state, action) => {
             state.status = action.payload;
-        }
+        },
+        setType: (state, action) => {
+            state.type = action.payload;
+        },
     }
 });
 
-export const { setEditorRow, setStatus } = searchSlice.actions;
+export const { setEditorRow, setStatus, setType } = searchSlice.actions;
 export default searchSlice.reducer;

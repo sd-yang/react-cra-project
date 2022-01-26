@@ -3,6 +3,7 @@ import NotFound from '../pages/404';
 import Dashboard from '../pages/dashboard';
 import SearchList from "../pages/searchList";
 import DetailInfo from '../pages/detailInfo';
+import AccountSetting from '../pages/accountSetting';
 
 const config = [
     {
@@ -49,7 +50,7 @@ const config = [
             {
                 path: '/account/setting',
                 title: '个人设置',
-                component: <Dashboard />
+                component: <AccountSetting />
             },
         ]
     },
