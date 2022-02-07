@@ -38,7 +38,6 @@ const SearchList = () => {
     }
 
     const toSearch = useCallback((values) => {
-        console.log(pageSize, '---');
         queryReq.resetRun(values);
     }, [queryReq]);
 

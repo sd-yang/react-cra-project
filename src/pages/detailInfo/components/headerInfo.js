@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Dropdown, Menu, Card, Space, Descriptions } from 'antd';
 
-const HeaderInfo = () => {
+const HeaderInfo = (props) => {
+    const { data = {}, loading } = props.request;
 
     const menu = (
         <Menu style={{ width: 111 }}>
@@ -24,8 +25,9 @@ const HeaderInfo = () => {
     return(
         <Card
             style={{ marginBottom: 20 }}
-            title={'单号：23034045945345'}
+            title={`单号：${data.id || ''}`}
             extra={headerExtra}
+            loading={loading}
         >
             <Descriptions size={'small'} title={'基本信息'} bordered>
                 <Descriptions.Item label="联系人">Zhou Maomao</Descriptions.Item>

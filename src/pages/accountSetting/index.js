@@ -1,32 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'antd';
+import React, { useState } from 'react';
+import { Menu } from 'antd';
+import './index.less';
+
+import BaseSetting from './components/baseSetting';
+import NoticeSetting from './components/noticeSetting';
 
 const SettingPage = () => {
-    const [test, setTest] = useState(1);
-    const [refresh, setRefresh] = useState(false);
+    const [selectKey, setSelectKey] = useState('base');
 
-    useEffect(() => {
-        func()
-    }, [refresh])
+    const list = [
+        { title: '基本设置', key: 'base', content: <BaseSetting/> },
+        { title: '消息通知', key: 'notice', content: <NoticeSetting /> }
+    ];
 
-    const func = () => {
-        console.log(test);
+    const handleSelect = ({ key }) => {
+        setSelectKey(key);
     };
 
-    const fun = () => {
-        setRefresh(new Date().getTime());
-    }
-
-    const handleTest = () => {
-        setTest(2);
-        fun()
-    }
-
     return (
-        <div>
-            <Button onClick={handleTest}>测试</Button>
+        <div className={'pageColor settingWrap'}>
+            <Menu mode={'inline'} selectedKeys={[selectKey]} onSelect={handleSelect}>
+                {
+                    list.map(item => {
+                        return <Menu.Item key={item.key}>
+                            {item.title}
+                        </Menu.Item>;
+                    })
+                }
+            </Menu>
+
+            <div className={'rightContent'}>
+                {list.find(item => item.key === selectKey)?.content}
+            </div>
         </div>
-    )
+    );
 };
 
 export default SettingPage;

@@ -36,7 +36,7 @@ const usePage = (req, options = {}) => {
     // 刷新请求，重置分页
     const resetRun = useCallback((value) => {
         setCurrent(1);
-        getData.run({ ...value, skip: 0, take: takeRef.current });
+        getData.run({ skip: 0, take: takeRef.current, ...value });
     }, [pageSize]);
 
     // 按照上次的请求参数，重置分页
