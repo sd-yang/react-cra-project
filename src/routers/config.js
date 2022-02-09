@@ -4,6 +4,7 @@ import Dashboard from '../pages/dashboard';
 import SearchList from "../pages/searchList";
 import DetailInfo from '../pages/detailInfo';
 import AccountSetting from '../pages/accountSetting';
+import AccountCenter from '../pages/accountCenter';
 
 const config = [
     {
@@ -45,7 +46,7 @@ const config = [
             {
                 path: '/account/center',
                 title: '个人中心',
-                component: <Dashboard />
+                component: <AccountCenter />
             },
             {
                 path: '/account/setting',

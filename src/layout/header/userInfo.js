@@ -23,7 +23,7 @@ const UserInfo = () => {
                 </Link>
             </Item>
             <Item key={'accountSetting'}>
-                <Link to={'/account/accountSetting'}>
+                <Link to={'/account/setting'}>
                     <SettingOutlined/> 个人设置
                 </Link>
             </Item>
