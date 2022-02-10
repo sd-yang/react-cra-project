@@ -31,3 +31,7 @@ body {
 .danger {
   color: red;
 }
+
+.cursor {
+  cursor: pointer;
+}
