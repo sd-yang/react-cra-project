@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
+import { ConfigProvider} from 'antd';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
 import { setRouters } from "../store/main";
 import { filterRoutesByRole, filterMenuList } from "../utils";
+import zhCN from 'antd/lib/locale/zh_CN';
+
 import LoginPage from "../pages/login";
 import LayoutPage from "../layout";
 import config from './config';
@@ -10,12 +13,12 @@ import config from './config';
 const AppRouter = () => {
     const dispatch = useDispatch();
     // 通过角色信息来组织路由
-    const { role } = useSelector(state => state.main.userInfo);
-    const routers = filterRoutesByRole(config, role);
+    const { userInfo, theme } = useSelector(state => state.main);
+    const routers = filterRoutesByRole(config, userInfo.role);
 
     useEffect(() => {
         // 存储路由数据
-        dispatch(setRouters(filterMenuList(config, role)));
+        dispatch(setRouters(filterMenuList(config, userInfo.role)));
     }, []);
 
     const loopRouters = (list) => {
@@ -28,14 +31,16 @@ const AppRouter = () => {
     };
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route key={'login'} path={'/login'} element={<LoginPage />}/>
-                <Route key={'layout'} path={'/'} element={<LayoutPage />}>
-                    {loopRouters(routers)}
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <ConfigProvider locale={zhCN} prefixCls={theme}>
+            <BrowserRouter>
+                <Routes>
+                    <Route key={'login'} path={'/login'} element={<LoginPage />}/>
+                    <Route key={'layout'} path={'/'} element={<LayoutPage />}>
+                        {loopRouters(routers)}
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </ConfigProvider>
     )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Switch } from 'antd';
+import { List, Switch, Card } from 'antd';
 
 const NoticeSetting = (props) => {
     const { loading } = props;
@@ -14,9 +14,7 @@ const NoticeSetting = (props) => {
     };
 
     return (
-        <div>
-            <div className={'baseTitle'}>消息通知</div>
-
+        <Card title={'消息通知'} bordered={false}>
             <List
                 loading={loading}
                 dataSource={data}
@@ -32,7 +30,7 @@ const NoticeSetting = (props) => {
                     </List.Item>
                 )}
             />
-        </div>
+        </Card>
     );
 };
 

@@ -14,13 +14,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.ant-layout {
+.custom-default-layout, .custom-dark-layout {
   height: 100%;
   max-height: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
-.ant-spin-nested-loading, .ant-spin-container {
+.custom-default-spin-nested-loading, .custom-default-spin-container, .custom-dark-spin-nested-loading, .custom-dark-spin-container {
   height: 100%;
 }
 

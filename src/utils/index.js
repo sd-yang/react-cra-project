@@ -13,31 +13,47 @@ export const transformRequestData = (data) => {
         delete results.params;
     }
     return results;
-}
+};
 
 // 根据角色筛选路由信息
 export const filterRoutesByRole = (list, role) => {
-      if (!list || list.length === 0) return [];
-      return list.reduce((total, current) => {
-          if (current.role && current.role !== role) return total;
-          if (current.children) return [...total, ...filterRoutesByRole(current.children, role)];
-          return [...total, current];
-      }, []);
+    if (!list || list.length === 0) return [];
+    return list.reduce((total, current) => {
+        if (current.role && current.role !== role) return total;
+        if (current.children) return [...total, ...filterRoutesByRole(current.children, role)];
+        return [...total, current];
+    }, []);
 };
 
 // 筛选出菜单信息
 export const filterMenuList = (list, role) => {
     if (!list) return [];
     return list.filter(k => (!k.role || k.role === role) && k.title).map(item => {
-        const info = {...item};
+        const info = { ...item };
         delete info.component;
         if (info.children) info.children = filterMenuList(item.children);
         return info;
-    })
+    });
 };
 
 // 获取查询参数
 export const querySearchId = () => {
     const { id } = useParams();
     return id;
+};
+
+// 存值
+export const setStorage = (name, value) => {
+    const stringValue = JSON.stringify(value);
+    window.localStorage.setItem(name, stringValue);
+};
+
+// 取值
+export const getStorage = (name) => {
+    let getValue = window.localStorage.getItem(name);
+    try {
+        return JSON.parse(getValue);
+    } catch (e) {
+        return getValue;
+    }
 };

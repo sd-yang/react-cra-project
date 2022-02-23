@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Button, Row, Form, Tabs } from 'antd';
+import { Button, Row, Form, Tabs, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { ProForm, FormCheckbox } from '../../components';
 import NormalLogin from './components/normalLogin';
@@ -13,13 +13,14 @@ const LoginPage = () => {
     const routerTo = useNavigate();
     const [form] = Form.useForm();
     const { size } = useSelector(state => state.login);
+    const { theme } = useSelector(state => state.main);
 
     const handleToLogin = () => {
         routerTo('/');
     };
 
     return (
-        <div className={'loginWrap'}>
+        <div className={`loginWrap ${theme}`}>
             <div className={'loginContent'}>
                 <div className={'titleImg'}>
                     <img src="/logo192.png" alt="logo"/>

@@ -29,7 +29,6 @@ const Sidebar = () => {
     return (
         <>
             <Menu
-                theme={'light'}
                 mode={'inline'}
                 defaultOpenKeys={['Dashboard']}
                 defaultSelectedKeys={['/']}
