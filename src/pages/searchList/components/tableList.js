@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
-import { Space, Popconfirm } from 'antd';
+import { Space, Popconfirm, Button, Row } from 'antd';
 import { useSelector } from 'react-redux';
 import { ProTable } from '../../../components';
+import { SettingOutlined } from '@ant-design/icons';
 import { timeRender, idToDetail, ellipsisRender, statusRender } from '../../../components/table/cellRender';
 
 const TableList = (props) => {
@@ -38,8 +39,10 @@ const TableList = (props) => {
                         align
                     }
                 ]}
-                {...pageProps ? { pagination: pageProps } : {}}
+                {...pageProps ? { pagination: { ...pageProps, position: ['bottomLeft'] } } : {}}
             />
+
+            <Button style={{ float: 'right', marginTop: -45 }}><SettingOutlined /></Button>
         </>
     );
 };
