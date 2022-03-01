@@ -14,10 +14,12 @@ export const timeFormat = (value, format) => {
     return dayjs(value).format(format);
 };
 
+// 时间完整渲染
 export const timeRender = (value) => {
     return timeFormat(value, 'YYYY-MM-DD HH:mm:ss');
 };
 
+// 时间日期渲染
 export const dateRender = (value) => {
     return timeFormat(value, 'YYYY-MM-DD');
 };
