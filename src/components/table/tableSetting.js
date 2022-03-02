@@ -4,7 +4,7 @@ import { ToolOutlined, MenuOutlined } from '@ant-design/icons';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const TableSetting = (props) => {
-    const { list, setList } = props;
+    const { list, setList, origin, setOrigin } = props;
     const [checkedList, setChecked] = useState(list.map(item => item.title));
     const [indeterminate, setIndeterminate] = useState(false);
     const [checkAll, setCheckAll] = useState(true);
@@ -20,12 +20,15 @@ const TableSetting = (props) => {
         setChecked(checkedValue);
         setIndeterminate(!!checkedValue.length && checkedValue.length < list.length);
         setCheckAll(checkedValue.length === list.length);
+        let newList = origin.filter(k => checkedValue.includes(k.title));
+        setList(newList);
     };
 
     const onCheckAllChange = e => {
-        setChecked(e.target.checked ? list.map(item => item.title) : []);
+        setChecked(e.target.checked ? origin.map(item => item.title) : []);
         setIndeterminate(false);
         setCheckAll(e.target.checked);
+        e.target.checked ? setList(origin) : setList([]);
     };
 
     const Container = SortableContainer(({ children }) => {
@@ -44,15 +47,20 @@ const TableSetting = (props) => {
     });
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
-        let newList = [...list];
-        let sortVal = newList.splice(oldIndex, 1);
-        newList.splice(newIndex, 0, sortVal[0]);
-        setList(newList);
+        setList(sortList(list, oldIndex, newIndex));
+        setOrigin(sortList(list, oldIndex, newIndex));
+    };
+
+    const sortList = (arr, oldIndex, newIndex) => {
+        let newList = [...arr];
+        let spliceVal = newList.splice(oldIndex, 1)[0];
+        newList.splice(newIndex, 0, spliceVal);
+        return newList;
     };
 
     const content = (
         <Container onSortEnd={onSortEnd}>
-            {list.map((value, index) => (<SortableItem key={`item-${index}`} index={index} value={value.title}/>))}
+            {origin.map((value, index) => (<SortableItem key={`item-${index}`} index={index} value={value.title}/>))}
         </Container>
     );
 

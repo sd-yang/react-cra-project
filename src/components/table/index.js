@@ -5,13 +5,15 @@ import TableSetting from './tableSetting';
 import './index.less';
 
 const ProTable = (props) => {
-    const { dataSource, bordered = true, size = 'middle', columns, hideSetting, ...tableProps } = props;
+    const { dataSource, bordered = true, size = 'middle', columns, hideSetting, requestData, ...tableProps } = props;
     const [tbColumns, setColumns] = useState(columns || []);
+    const [originalColumn, setOriginalColumn] = useState(columns || []);
     const manual = Boolean(dataSource);
-    const { loading, data = [] } = useRequest('', { manual });
+    const { loading, data = [] } = useRequest(requestData, { manual });
 
     useEffect(() => {
         setColumns(columns);
+        setOriginalColumn(columns);
     }, [columns]);
 
     return (
@@ -25,7 +27,15 @@ const ProTable = (props) => {
                 {...tableProps}
             />
 
-            {!hideSetting && <TableSetting list={tbColumns} setList={setColumns}/>}
+            {
+                !hideSetting &&
+                <TableSetting
+                    list={tbColumns}
+                    setList={setColumns}
+                    origin={originalColumn}
+                    setOrigin={setOriginalColumn}
+                />
+            }
         </div>
     );
 };
