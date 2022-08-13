@@ -28,7 +28,7 @@ const LayoutPage = () => {
                     >
                         <Sidebar/>
                     </Sider>
-                    <Content style={{ padding: '10px 20px 0', overflow: 'auto' }}>
+                    <Content style={{ paddingLeft: 15, overflow: 'auto' }}>
                         <Outlet/>
                     </Content>
                 </Layout>

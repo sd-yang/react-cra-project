@@ -6,10 +6,10 @@ const { Option } = Select;
 
 // TODO 模糊搜索
 const ApiSelect = (props) => {
-    const { formProps, disabled, dataSource, requestData, formatResult, refreshFlag, callback, ...otherProps } = props;
+    const { formProps, disabled, dataSource, request, formatResult, refreshFlag, callback, ...otherProps } = props;
     const manual = Boolean(dataSource);
 
-    const { loading, data } = useRequest(requestData, {
+    const { loading, data } = useRequest(request, {
         manual,
         onSuccess: (value) => {
             if (callback) callback(value);

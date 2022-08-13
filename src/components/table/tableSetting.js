@@ -4,7 +4,7 @@ import { ToolOutlined, MenuOutlined } from '@ant-design/icons';
 import { SortableContainer, SortableElement } from 'react-sortable-hoc';
 
 const TableSetting = (props) => {
-    const { list, setList, origin, setOrigin } = props;
+    const { list, setList, origin, setOrigin, afterSetColumn } = props;
     const [checkedList, setChecked] = useState(list.map(item => item.title));
     const [indeterminate, setIndeterminate] = useState(false);
     const [checkAll, setCheckAll] = useState(true);
@@ -22,13 +22,16 @@ const TableSetting = (props) => {
         setCheckAll(checkedValue.length === list.length);
         let newList = origin.filter(k => checkedValue.includes(k.title));
         setList(newList);
+        storeNewColumns(newList);
     };
 
     const onCheckAllChange = e => {
         setChecked(e.target.checked ? origin.map(item => item.title) : []);
         setIndeterminate(false);
         setCheckAll(e.target.checked);
-        e.target.checked ? setList(origin) : setList([]);
+        const newList = e.target.checked ? origin : [];
+        setList(newList);
+        storeNewColumns(newList);
     };
 
     const Container = SortableContainer(({ children }) => {
@@ -47,8 +50,10 @@ const TableSetting = (props) => {
     });
 
     const onSortEnd = ({ oldIndex, newIndex }) => {
-        setList(sortList(list, oldIndex, newIndex));
+        const newColumns = sortList(list, oldIndex, newIndex);
+        setList(newColumns);
         setOrigin(sortList(list, oldIndex, newIndex));
+        storeNewColumns(newColumns);
     };
 
     const sortList = (arr, oldIndex, newIndex) => {
@@ -58,6 +63,12 @@ const TableSetting = (props) => {
         return newList;
     };
 
+    // 保存更改后的数据
+    const storeNewColumns = (list) => {
+        if (afterSetColumn) afterSetColumn(list);
+        console.log(list);
+    };
+
     const content = (
         <Container onSortEnd={onSortEnd}>
             {origin.map((value, index) => (<SortableItem key={`item-${index}`} index={index} value={value.title}/>))}
@@ -65,11 +76,9 @@ const TableSetting = (props) => {
     );
 
     return (
-        <div style={{ float: 'right', marginTop: -40 }}>
-            <Popover content={content} trigger={'click'} placement="topLeft">
-                <Button><ToolOutlined/></Button>
-            </Popover>
-        </div>
+        <Popover content={content} trigger={'click'} placement="topLeft">
+            <Button><ToolOutlined/></Button>
+        </Popover>
     );
 };
 

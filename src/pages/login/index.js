@@ -39,7 +39,7 @@ const LoginPage = () => {
                     </Tabs>
 
                     <Row justify={'space-between'}>
-                        <FormCheckbox name={'remember'} option={{ options: [{ label: '自动登陆', value: true }] }}/>
+                        <FormCheckbox formProps={{ name: 'remember' }} options={[{ label: '自动登陆', value: true }]}/>
                         <a>忘记密码？</a>
                     </Row>
 

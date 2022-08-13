@@ -46,17 +46,15 @@ const PhoneLogin = (props) => {
     return (
         <>
             <FormInput
-                name={'userPhone'}
-                required={true}
-                option={{ prefix: <UserOutlined/>, size }}
-                rules={[{ required: true, message: '请输入手机号!' }]}
+                formProps={{ name: 'userPhone', rules: [{ required: true, message: '请输入手机号!' }] }}
+                size={size}
+                prefix={<UserOutlined/>}
             />
             <Space>
                 <FormInput
-                    name={'userCode'}
-                    required
-                    option={{ prefix: <LockOutlined/>, size }}
-                    rules={[{ required: true, message: '验证码不能为空!' }]}
+                    formProps={{ name: 'userCode', rules: [{ required: true, message: '验证码不能为空!' }] }}
+                    size={size}
+                    prefix={<LockOutlined/>}
                 />
                 <Button
                     size={size}

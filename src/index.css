@@ -23,6 +23,10 @@ body {
   overflow: hidden;
 }
 
+.custom-default-layout .searchPageWrap {
+  background: #ffffff;
+}
+
 .custom-default-spin-nested-loading, .custom-default-spin-container, .custom-dark-spin-nested-loading, .custom-dark-spin-container {
   height: 100%;
 }

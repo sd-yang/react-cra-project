@@ -1,7 +1,7 @@
 import React from 'react';
 import { QueryForm, FormInput, FormSelect, FormDatePicker, usePage, useBoolean, useToggle } from '../../../../components';
 
-const NormalSearch = (props) => {
+const SearchForm = (props) => {
     const { formList = [] } = props;
 
     return(
@@ -18,5 +18,5 @@ const NormalSearch = (props) => {
     )
 };
 
-export default NormalSearch;
+export default SearchForm;
 

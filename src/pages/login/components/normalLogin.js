@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
-import { FormInput, FormPassword } from '../../../components';
+import { FormInput } from '../../../components';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 const NormalLogin = () => {
@@ -9,14 +9,15 @@ const NormalLogin = () => {
     return (
         <>
             <FormInput
-                name={'userName'}
-                option={{ prefix: <UserOutlined/>, size }}
-                rules={[{ required: true, message: '请输入账号!' }]}
+                formProps={{ name: 'userName', rules: [{ required: true, message: '请输入账号!' }] }}
+                prefix={<UserOutlined/>}
+                size={size}
             />
-            <FormPassword
-                name={'usePassword'}
-                option={{ prefix: <LockOutlined/>, size }}
-                rules={[{ required: true, message: '请输入密码!' }]}
+            <FormInput
+                type={'password'}
+                formProps={{ name: 'usePassword', rules: [{ required: true, message: '请输入密码!' }] }}
+                prefix={<LockOutlined/>}
+                size={size}
             />
         </>
     );

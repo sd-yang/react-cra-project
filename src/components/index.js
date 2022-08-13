@@ -6,4 +6,4 @@ export { default as ProForm } from './form/proForm';
 export { default as QueryForm } from './form/queryForm';
 export { default as DrawerForm } from './form/drawerForm';
 export { default as ProTable } from './table';
-export { FormInput, FormInputArea, FormSelect, FormDatePicker, FormCheckbox, FormPassword } from './form/formControl';
+export { FormInput, FormSelect, FormDatePicker, FormCheckbox } from './form/formControl';

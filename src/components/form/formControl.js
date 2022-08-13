@@ -14,45 +14,47 @@ const FormControl = (props) => {
 };
 
 export const FormInput = memo((props) => {
-    const { option = {} } = props;
-    return <FormControl {...props}>
-        <Input {...option}/>
+    const { type, formProps, ...rest } = props;
+    let children;
+    switch (type) {
+        case 'search':
+            children = <Input.Search {...rest}/>;
+            break;
+        case 'area':
+            children = <TextArea autoSize={{ minRows: 5 }} {...rest}/>;
+            break;
+        case 'password':
+            children = <Input.Password {...rest}/>;
+            break;
+        default:
+            children = <Input {...rest}/>;
+    }
+    return <FormControl {...formProps}>
+        {children}
     </FormControl>;
 });
-
-export const FormInputArea = memo((props) => {
-    const { option = {} } = props;
-    return <FormControl {...props}>
-        <TextArea autoSize={{ minRows: 5 }} {...option}/>
-    </FormControl>;
-});
-
-export const FormPassword = (props) => {
-    const { option = {} } = props;
-    return <FormControl {...props}>
-        <Input.Password {...option}/>
-    </FormControl>;
-};
 
 export const FormSelect = memo((props) => {
-    const { option = {} } = props;
-    return <FormControl {...props}>
-        <ApiSelect {...option}/>
+    const { formProps, ...rest } = props;
+    return <FormControl {...formProps}>
+        <ApiSelect {...rest}/>
     </FormControl>;
 });
 
 export const FormDatePicker = (props) => {
-    return <FormControl {...props}>
+    const { formProps, ...rest } = props;
+    return <FormControl {...formProps}>
         <DatePicker
             style={{ width: '100%' }}
             format={props.showTime ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'}
+            {...rest}
         />
     </FormControl>;
 };
 
 export const FormCheckbox = (props) => {
-    const { option = {} } = props;
-    return <FormControl {...props}>
-        <Checkbox.Group {...option}/>
+    const { formProps, ...rest } = props;
+    return <FormControl {...formProps}>
+        <Checkbox.Group {...rest}/>
     </FormControl>;
 };

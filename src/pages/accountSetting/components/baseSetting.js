@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Avatar, Form, Card } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
-import { ProForm, FormInput, FormInputArea } from '../../../components';
+import { ProForm, FormInput } from '../../../components';
 
 const BaseSetting = () => {
 
@@ -12,7 +12,6 @@ const BaseSetting = () => {
                     <div className={'leftSetting'}>
                         <FormInput label={'邮箱'}/>
                         <FormInput label={'昵称'}/>
-                        <FormInputArea label={'个人简介'}/>
                         <FormInput label={'联系电话'}/>
                     </div>
 

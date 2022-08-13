@@ -2,13 +2,39 @@ import React, { memo } from 'react';
 import { Space, Popconfirm } from 'antd';
 import { useSelector } from 'react-redux';
 import { ProTable } from '../../../components';
-import { timeRender, idToDetail, ellipsisRender, statusRender } from '../../../components/table/cellRender';
 
+/**
+ * 通用查询列表处理
+ * - 对配置的列表数据进行处理，然后传递到表格组件中
+ *
+ */
 const TableList = (props) => {
-    const align = 'center';
-    const { request, operation } = props;
+    const { request, columns, actions, operation } = props;
     const { loading, data, pageProps } = request;
     const { status } = useSelector(state => state.search);
+
+    // 添加配置操作项
+    // 处理页面级别的一些特殊的列表配置项
+    const setColumns = () => {
+        if (!columns) return [];
+        if (!operation) return columns;
+        const { editor, del, title, width, render } = operation;
+        const column = {
+            title: title || '操作',
+            dataIndex: 'operationArea',
+            width: width || 100,
+            render: (value, record, index) => {
+                if (render) return render(record, index);
+                return <Space>
+                    {editor && <a onClick={() => actions.handleEditor(record)}>编辑</a>}
+                    {del && <Popconfirm title={'请确认是否删除该条数据？'} onConfirm={() => actions.handleDelete(record)}>
+                        <a className={'danger'}>删除</a>
+                    </Popconfirm>}
+                </Space>;
+            }
+        };
+        return [...columns, column];
+    };
 
     return (
         <>
@@ -16,29 +42,8 @@ const TableList = (props) => {
                 rowKey={'id'}
                 loading={loading}
                 dataSource={data?.data?.data || []}
-                columns={[
-                    { title: 'ID', dataIndex: 'id', render: (v) => idToDetail(v, '/list/detail'), width: 200, align },
-                    { title: '名称', dataIndex: 'title', render: ellipsisRender, ellipsis: { showTitle: false }, align },
-                    { title: '状态', dataIndex: 'status', width: 80, render: v => statusRender(v, status), align },
-                    { title: '描述', dataIndex: 'desc', ellipsis: { showTitle: false }, render: ellipsisRender, align },
-                    { title: '责任人', dataIndex: 'operator', width: 80, align },
-                    { title: '上次调度时间', dataIndex: 'time', render: timeRender, width: 200, align },
-                    {
-                        title: '操作',
-                        dataIndex: 'operation',
-                        width: 100,
-                        render: (value, record) => {
-                            return <Space>
-                                <Popconfirm title={'请确认是否删除该条数据？'} onConfirm={operation.handleDelete}>
-                                    <a className={'danger'}>删除</a>
-                                </Popconfirm>
-                                <a onClick={() => operation.handleEditor(record)}>编辑</a>
-                            </Space>;
-                        },
-                        align
-                    }
-                ]}
-                {...pageProps ? { pagination: { ...pageProps, position: ['bottomLeft'] } } : {}}
+                columns={setColumns()}
+                {...pageProps ? { pagination: { ...pageProps } } : {}}
             />
         </>
     );

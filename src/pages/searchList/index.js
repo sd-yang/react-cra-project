@@ -1,97 +1,62 @@
-import React, { memo, useCallback, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setEditorRow, setStatus, setType } from '../../store/search';
-import { Card, Radio, Space, Button, message } from 'antd';
-import { QueryForm, FormInput, FormSelect, FormDatePicker, usePage, useBoolean } from '../../components';
-import { getStatus, getList } from '../../server/list';
-
-import TableList from './components/tableList';
-import CardList from './components/cardList';
-import EditorDrawer from './components/editorDrawer';
+import React, { memo } from 'react';
+import { PageHeader } from 'antd';
+import Content from './components/searchContent';
 import './index.less';
 
-const SearchList = () => {
-    const toggleEditor = useBoolean(false);
-    const { type } = useSelector(state => state.search);
-    const [pageSize, setPageSize] = useState(10);
-    const dispatch = useDispatch();
-    const queryReq = usePage(getList, { pageSize });
+/**
+ * Search Page
+ * 列表查询页面，通过配置可以快速生成页面
+ * 集成列表查询、创建、编辑、删除等功能
+ * 逻辑全部封装页面内部，同时保证自由度高，页面风格完全统一
+ *
+ * Page 默认显示为简单查询
+ *
+ */
 
-    // 切换展示形态
-    const handleType = (e) => {
-        const take = e.target.value === 'list' ? 10 : 8;
-        setPageSize(take);
-        dispatch(setType(e.target.value));
-        queryReq.refreshPage(take);
+const SearchPageList = (props) => {
+    const {
+        hasPageWrap = true, title, subTitle, breadcrumb, hasBack = false,
+        headerExtra = null, pageFooter = null, tags, ...rest
+    } = props;
+
+    // 根据url自动生成面包屑
+    const breadcrumbRoute = () => {
+        if (breadcrumb === false) return {};
+        if (typeof breadcrumb === 'object') return breadcrumb;
+        const routes = [
+            {
+                path: 'index',
+                breadcrumbName: 'First-level Menu',
+            },
+            {
+                path: 'first',
+                breadcrumbName: 'Second-level Menu',
+            },
+            {
+                path: 'second',
+                breadcrumbName: 'Third-level Menu',
+            },
+        ];
+        const results = { routes };
+        return results;
     };
 
-    // 操作 新增｜编辑｜删除
-    const operation = {
-        handleEditor: (record = {}) => {
-            dispatch(setEditorRow(record));
-            toggleEditor.setTrue();
-        },
-        handleDelete: () => {
-            message.success('删除成功！');
-            queryReq.refreshPage();
-        }
-    }
-
-    const toSearch = useCallback((values) => {
-        queryReq.resetRun(values);
-    }, [queryReq]);
-
-    const statusCallBack = useCallback((data) => {
-        const list = data?.data || [];
-        const statusList = {};
-        list.forEach(item => {
-            statusList[item.value] = item.label;
-        });
-        dispatch(setStatus(statusList));
-    }, []);
-
-    const handleRefresh = useCallback(() => {
-        queryReq.refresh();
-    }, [queryReq]);
-
-    const switchType = (
-        <Space>
-            <Button onClick={() => operation.handleEditor()}>新增</Button>
-            <Radio.Group value={type} buttonStyle="solid" onChange={handleType}>
-                <Radio.Button value={'list'}>列表式</Radio.Button>
-                <Radio.Button value={'card'}>卡片式</Radio.Button>
-            </Radio.Group>
-            <Button onClick={handleRefresh}>刷新</Button>
-        </Space>
-    );
-
-    return (
-        <div className={'searchListWrap'}>
-            <QueryForm onFinish={toSearch}>
-                <FormInput label={'Id'} name={'id'}/>
-                <FormInput label={'名称'} name={'title'}/>
-                <FormSelect label={'状态'} name={'status'} option={{ requestData: getStatus, callback: statusCallBack }}/>
-                <FormInput label={'描述'} name={'desc'}/>
-                <FormDatePicker label={'调度时间'} name={'time'}/>
-            </QueryForm>
-
-            <Card extra={switchType}>
-                {
-                    type === 'list' ?
-                        <TableList
-                            request={queryReq}
-                            operation={operation}
-                        /> :
-                        <CardList
-                            request={queryReq}
-                            operation={operation}
-                        />
-                }
-            </Card>
-
-            <EditorDrawer control={toggleEditor} refresh={handleRefresh}/>
+    return hasPageWrap ? (
+        <div className={'searchPageWrap'}>
+            <PageHeader
+                title={title}
+                subTitle={subTitle}
+                backIcon={hasBack}
+                breadcrumb={breadcrumbRoute()}
+                tags={tags}
+                extra={headerExtra}
+                footer={pageFooter}
+                style={{ padding: 0 }}
+            >
+                <Content {...rest}/>
+            </PageHeader>
         </div>
-    );
+    ) : <Content {...rest}/>;
 };
 
-export default memo(SearchList);
+export default memo(SearchPageList);

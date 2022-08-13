@@ -1,16 +1,16 @@
 import React, { memo, useEffect } from 'react';
 import { Form } from 'antd';
 import { useSelector } from 'react-redux';
-import { DrawerForm, ProForm, FormInput, FormInputArea, FormSelect } from '../../../components';
+import { DrawerForm, ProForm, FormInput, FormSelect } from '../../../components';
 import { getStatus } from '../../../server/list';
 
 const { FormGroup } = ProForm;
 
 const EditorDrawer = (props) => {
-    const { control, refresh } = props;
+    const { control, refresh, type } = props;
     const [form] = Form.useForm();
     const { editorRow } = useSelector(state => state.search);
-    const isEditor = Object.keys(editorRow).length > 0;
+    const isEditor = type === 'editor';
 
     useEffect(() => {
         if (!control.state) return;
@@ -36,7 +36,6 @@ const EditorDrawer = (props) => {
                     <FormSelect label={'状态'} name={'status'} option={{ requestData: getStatus }}/>
                     <FormInput label={'责任人'} name={'operator'}/>
                 </FormGroup>
-                <FormInputArea label={'描述'} name={'desc'}/>
             </ProForm>
         </DrawerForm>
     );

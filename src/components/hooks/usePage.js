@@ -45,7 +45,7 @@ const usePage = (req, options = {}) => {
         setCurrent(1);
     }, [pageSize]);
 
-    return { ...getData, resetRun, refreshPage, pageProps: { current, pageSize, onChange } };
+    return { ...getData, run: resetRun, refreshPage, pageProps: { current, pageSize, onChange } };
 };
 
 export default usePage;
